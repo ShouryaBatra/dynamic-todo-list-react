@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Header from "./components/Header";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -25,13 +26,7 @@ function App() {
   return (
     <div className="flex flex-col justify-between items-center min-h-screen m-0 text-gray-800 bg-gradient-to-br from-green-500 to-white font-inter p-5">
       {/* Header */}
-      <header className="text-center mb-5">
-        <h1 className="text-4xl font-bold text-gray-800">My To-Do List</h1>
-        <p className="text-gray-600 italic mt-2">
-          Stay organized and productive!
-        </p>
-      </header>
-
+      <Header />
       {/* Tasks box */}
       <div className="bg-white p-5 rounded-xl shadow-lg w-96 text-center transition-transform duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2">
         <h2 className="text-2xl mb-5 text-gray-700">Tasks</h2>{" "}
@@ -63,7 +58,10 @@ function App() {
               }`}
             >
               {/* Fetch task text */}
-              <span onClick={() => toggleTask(index)}>{task.text}</span>
+              <div className="w-full flex" onClick={() => toggleTask(index)}>
+                <span onClick={() => toggleTask(index)}>{task.text}</span>
+              </div>
+
               <button
                 onClick={() => deleteTask(index)}
                 className="bg-none border-none text-red-500 cursor-pointer text-xl transition duration-300 hover:text-red-400"
