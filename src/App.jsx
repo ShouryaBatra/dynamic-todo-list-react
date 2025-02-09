@@ -32,9 +32,9 @@ function App() {
         </p>
       </header>
 
-      {/* Main Content */}
+      {/* Tasks box */}
       <div className="bg-white p-5 rounded-xl shadow-lg w-96 text-center transition-transform duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2">
-        <h2 className="text-2xl mb-5 text-gray-700">Tasks</h2>
+        <h2 className="text-2xl mb-5 text-gray-700">Tasks</h2>{" "}
         <div className="flex gap-3 mb-5">
           <input
             type="text"
@@ -51,15 +51,18 @@ function App() {
           </button>
         </div>
         <ul className="list-none p-0 mt-5 animate-fadeIn">
+          {/* Loop through all tasks and display them */}
           {tasks.map((task, index) => (
             <li
               key={index}
               className={`flex justify-between items-center p-3 rounded-lg mt-2 cursor-pointer transition-transform duration-300 hover:bg-gray-300 hover:translate-x-1 ${
+                // change styling based on if task is completed or not
                 task.completed
                   ? "bg-gray-200 text-gray-500 line-through opacity-70"
                   : "bg-gray-200"
               }`}
             >
+              {/* Fetch task text */}
               <span onClick={() => toggleTask(index)}>{task.text}</span>
               <button
                 onClick={() => deleteTask(index)}
