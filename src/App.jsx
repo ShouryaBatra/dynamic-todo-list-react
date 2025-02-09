@@ -23,9 +23,18 @@ function App() {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen m-0 text-gray-800 bg-gradient-to-br from-green-500 to-white font-inter">
-      <div className="bg-white p-5 rounded-xl shadow-lg w-100 text-center transition-transform duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2">
-        <h1 className="text-2xl mb-5 text-gray-700">React To-Do List</h1>
+    <div className="flex flex-col justify-between items-center min-h-screen m-0 text-gray-800 bg-gradient-to-br from-green-500 to-white font-inter p-5">
+      {/* Header */}
+      <header className="text-center mb-5">
+        <h1 className="text-4xl font-bold text-gray-800">My To-Do List</h1>
+        <p className="text-gray-600 italic mt-2">
+          Stay organized and productive!
+        </p>
+      </header>
+
+      {/* Main Content */}
+      <div className="bg-white p-5 rounded-xl shadow-lg w-96 text-center transition-transform duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-2">
+        <h2 className="text-2xl mb-5 text-gray-700">Tasks</h2>
         <div className="flex gap-3 mb-5">
           <input
             type="text"
@@ -43,38 +52,31 @@ function App() {
         </div>
         <ul className="list-none p-0 mt-5 animate-fadeIn">
           {tasks.map((task, index) => (
-            <>
-              {!task.completed ? (
-                <li
-                  key={index}
-                  className="flex justify-between items-center bg-gray-200 p-3 rounded-lg mt-2 cursor-pointer transition-transform duration-300 hover:bg-gray-300 hover:translate-x-1"
-                >
-                  <span onClick={() => toggleTask(index)}>{task.text}</span>
-                  <button
-                    onClick={() => deleteTask(index)}
-                    className="bg-none border-none text-red-500 cursor-pointer text-xl transition duration-300 hover:text-red-400"
-                  >
-                    ❌
-                  </button>
-                </li>
-              ) : (
-                <li
-                  key={index}
-                  className="flex justify-between items-center bg-gray-200 p-3 rounded-lg mt-2 cursor-pointer transition-transform duration-300 hover:bg-gray-300 hover:translate-x-1 completed text-gray-500 line-through"
-                >
-                  <span onClick={() => toggleTask(index)}>{task.text}</span>
-                  <button
-                    onClick={() => deleteTask(index)}
-                    className="bg-none border-none text-red-500 cursor-pointer text-xl transition duration-300 hover:text-red-400"
-                  >
-                    ❌
-                  </button>
-                </li>
-              )}
-            </>
+            <li
+              key={index}
+              className={`flex justify-between items-center p-3 rounded-lg mt-2 cursor-pointer transition-transform duration-300 hover:bg-gray-300 hover:translate-x-1 ${
+                task.completed
+                  ? "bg-gray-200 text-gray-500 line-through opacity-70"
+                  : "bg-gray-200"
+              }`}
+            >
+              <span onClick={() => toggleTask(index)}>{task.text}</span>
+              <button
+                onClick={() => deleteTask(index)}
+                className="bg-none border-none text-red-500 cursor-pointer text-xl transition duration-300 hover:text-red-400"
+              >
+                ❌
+              </button>
+            </li>
           ))}
         </ul>
       </div>
+
+      {/* Footer */}
+      <footer className="mt-5 text-gray-600 text-sm">
+        <p>✨ Keep pushing forward! ✨</p>
+        <p>© {new Date().getFullYear()} Dynamic To-Do List</p>
+      </footer>
     </div>
   );
 }
