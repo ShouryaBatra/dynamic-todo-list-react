@@ -6,7 +6,7 @@ function App() {
   const [newTask, setNewTask] = useState("");
 
   const addTask = () => {
-    // if (newTask.trim() === "") return;
+    if (newTask.trim() === "") return;
     setTasks([...tasks, { text: newTask, completed: false }]);
     setNewTask("");
   };
